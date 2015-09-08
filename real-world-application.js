@@ -1,7 +1,20 @@
-/*Imagine you work for Crayola and your boss just told you that the Crayola1990 API needs to have a url slug generated for all of the colors names.
-* To do this you need to lowercase and hyphenate each color in the following array.
-* You can not edit the values in the array by hand as your boss is wanting a loop that can be applied to any set of crayola boxes in the future
+
+// JavaScript-Assessment-1 ... real-world-application.js
+
+/*Imagine you work for Crayola and your boss just told you that the Crayola1990 API 
+* needs to have a url slug generated for all of the colors names.  To do this you 
+* need to lowercase and hyphenate each color in the following array.  You can not 
+* edit the values in the array by hand as your boss is wanting a loop that can be 
+* applied to any set of crayola boxes in the future
 */
+
+// Slugs are generally entirely lowercase, with accented characters replaced 
+// by letters from the English alphabet and whitespace characters replaced 
+// by a dash or an underscore, in order to avoid being encoded. Punctuation 
+// marks are generally removed. For example:
+// Original title: This, That & the Other! Various Outré Considerations
+// Generated slug: this-that-the-other-various-outre-considerations
+
 var crayola1990 = [
 	'Scarlet',
 	'Sunset Orange',
@@ -58,10 +71,38 @@ var crayola1990 = [
 	'Antique Brass'
 ];
 
-//create a loop that will iterate over each item in the array and then use the String methods to modify the value at the current position in the array
+// create a loop that will iterate over each item in the array and then use
+// the String methods to modify the value at the current position in the array
 
 /***** HINTS *******
- * remember strings are immutable but the value of a variable can be adjusted as often as needed.
- * take advantage of the methods available on stings http://www.w3schools.com/js/js_string_methods.asp
- * there are multiple ways to do something like this but you might consider using split and join
- */ 
+* remember strings are immutable but the value of a variable can be adjusted as 
+* often as needed. Take advantage of the methods available on stings 
+* http://www.w3schools.com/js/js_string_methods.asp there are multiple 
+* ways to do something like this but you might consider using split and join
+*/
+
+var crayola1990Slug = [];
+function setCrayola1990Slug() {
+    var text1, text2 = "";
+    for (var i = 0; i < crayola1990.length; i++) {
+        text1 = crayola1990[i].toLowerCase();
+        text2 = "";
+        for (var w = 0; w < text1.length; w++) {
+            if (text1.charCodeAt(w) === 32) {
+                text2 += "-";
+            } else if (text1.charCodeAt(w) >= 97 && text1.charCodeAt(w) <= 122) {
+                text2 += text1[w];
+            }
+        }
+        crayola1990Slug.push(text2);
+    }
+};
+
+function listCrayola1990Slug() {
+    for (var i = 0; i < crayola1990Slug.length; i++) {
+        console.log(crayola1990[i] + " = " + crayola1990Slug[i]);
+    }
+};
+
+setCrayola1990Slug();
+listCrayola1990Slug();
